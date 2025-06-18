@@ -192,3 +192,42 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# React + TypeScript (frontend)
+# node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# output builds
+/build/
+dist/
+out/
+
+# Vite / Next.js
+.next/
+.vercel/
+.vite/
+.cache/
+
+# dotenv environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# testing
+coverage/
+*.test.ts.snap
+*.test.js.snap
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
