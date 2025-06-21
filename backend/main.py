@@ -20,11 +20,6 @@ app.add_middleware(
 # Crear las tablas en la base de datos si no existen
 Base.metadata.create_all(bind=engine)
 
-# Ruta de prueba para verificar que el backend está vivo
-@app.get("/", response_class=JSONResponse)
-def health_check() -> dict[str, str]:
-    return {"message": "Backend de ventas funcionando 🚀"}
-
 # Incluir todas las rutas definidas en api/routes.py
 app.include_router(router)
 
