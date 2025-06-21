@@ -69,17 +69,3 @@ Crea .env a partir de .env.example con:
 VITE_API_URL=http://localhost:8000
 ```
 
-## ▶️ Cómo correr el proyecto
-
-```bash
-# Backend
-cd backend
-python -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-
-# Frontend
-cd frontend
-npm install
-npm run dev
