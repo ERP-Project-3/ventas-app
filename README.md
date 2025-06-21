@@ -18,6 +18,7 @@ Desarrollar un módulo funcional que permita:
 
 ## 🏗️ Estructura del proyecto
 
+```
 ventas-app/
 ├── backend/ # Backend en FastAPI
 │ └── main.py
@@ -27,6 +28,7 @@ ventas-app/
 ├── start-backend.sh
 ├── start-frontend.sh
 └── README.md
+```
 
 ## 🚀 Cómo iniciar el proyecto
 
@@ -68,18 +70,3 @@ Crea .env a partir de .env.example con:
 ```bash
 VITE_API_URL=http://localhost:8000
 ```
-
-## ▶️ Cómo correr el proyecto
-
-```bash
-# Backend
-cd backend
-python -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-
-# Frontend
-cd frontend
-npm install
-npm run dev
