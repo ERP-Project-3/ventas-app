@@ -3,10 +3,23 @@
 
 # Backend
 cd backend
-source env/bin/activate  # activa tu entorno virtual
+
+# Crea entorno solo si no existe
+if [ ! -d "env" ]; then
+  python -m venv env
+fi
+
+# Activa entorno
+source env/Scripts/activate
+
+# Instala dependencias
+pip install -r requirements.txt
+
+# Inicia backend
 uvicorn main:app --reload &
-cd ..
 
 # Frontend
+cd ..
 cd frontend
+npm install
 npm run dev
