@@ -4,7 +4,7 @@
 # Backend
 cd backend
 source env/bin/activate  # activa tu entorno virtual
-uvicorn app.main:app --reload &
+uvicorn main:app --reload &
 cd ..
 
 # Frontend
