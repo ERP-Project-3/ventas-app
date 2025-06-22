@@ -65,7 +65,4 @@ Crea .env a partir de .env.example
 Frontend:
 Crea .env a partir de .env.example con:
 
-```bash
-VITE_API_URL=http://localhost:8000
-```
 
