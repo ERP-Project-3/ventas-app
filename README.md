@@ -17,7 +17,7 @@ Desarrollar un módulo funcional que permita:
 ---
 
 ## 🏗️ Estructura del proyecto
-
+```
 ventas-app/
 ├── backend/ # Backend en FastAPI
 │ └── main.py
@@ -27,7 +27,7 @@ ventas-app/
 ├── start-backend.sh
 ├── start-frontend.sh
 └── README.md
-
+```
 ## 🚀 Cómo iniciar el proyecto
 
 ### 1. Backend (FastAPI)
@@ -63,6 +63,4 @@ Backend:
 Crea .env a partir de .env.example
 
 Frontend:
-Crea .env a partir de .env.example con:
-
-
+Crea .env a partir de .env.example
