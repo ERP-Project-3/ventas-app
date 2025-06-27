@@ -20,34 +20,6 @@ Desarrollar un módulo funcional que permita:
 ## 🏗️ Estructura del proyecto
 
 ```
-ChatGPT said:
-Claro, aquí tienes una versión actualizada y más completa del README.md, adaptada al nuevo estado del proyecto y los scripts disponibles como start.sh, setup-db.sh, dev.sh, etc.:
-
-markdown
-Copy
-Edit
-# 🧾 ventas-app – Módulo de Registro de Ventas
-
-Este repositorio contiene el desarrollo del módulo principal de la aplicación: **Registro de Ventas**, encargado de gestionar transacciones comerciales, asociarlas a clientes y controlar el estado de pago (contado o crédito).  
-Actualmente está compuesto por un backend en **FastAPI** y un frontend en **React + TypeScript + Vite**.
-
----
-
-## 🎯 Objetivo
-
-Desarrollar un módulo funcional que permita:
-
-- Registrar ventas manuales o por formulario.
-- Asociar ventas a clientes y condiciones de pago.
-- Consultar historial de ventas.
-- Iniciar la base del control de cobranzas.
-- Evolucionar hacia un sistema ERP completo, integrable con herramientas como Salesforce, Contpaqi, SAP, Oracle, Tress, entre otras.
-
----
-
-## 🏗️ Estructura del proyecto
-
-```
 ventas-app/
 ├── backend/ # Backend en FastAPI
 │ ├── app/ # Código modular del backend
