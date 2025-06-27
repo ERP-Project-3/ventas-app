@@ -13,54 +13,141 @@ Desarrollar un módulo funcional que permita:
 - Asociar ventas a clientes y condiciones de pago.
 - Consultar historial de ventas.
 - Iniciar la base del control de cobranzas.
+- Evolucionar hacia un sistema ERP completo, integrable con herramientas como Salesforce, Contpaqi, SAP, Oracle, Tress, entre otras.
 
 ---
 
 ## 🏗️ Estructura del proyecto
+
+```
+ChatGPT said:
+Claro, aquí tienes una versión actualizada y más completa del README.md, adaptada al nuevo estado del proyecto y los scripts disponibles como start.sh, setup-db.sh, dev.sh, etc.:
+
+markdown
+Copy
+Edit
+# 🧾 ventas-app – Módulo de Registro de Ventas
+
+Este repositorio contiene el desarrollo del módulo principal de la aplicación: **Registro de Ventas**, encargado de gestionar transacciones comerciales, asociarlas a clientes y controlar el estado de pago (contado o crédito).  
+Actualmente está compuesto por un backend en **FastAPI** y un frontend en **React + TypeScript + Vite**.
+
+---
+
+## 🎯 Objetivo
+
+Desarrollar un módulo funcional que permita:
+
+- Registrar ventas manuales o por formulario.
+- Asociar ventas a clientes y condiciones de pago.
+- Consultar historial de ventas.
+- Iniciar la base del control de cobranzas.
+- Evolucionar hacia un sistema ERP completo, integrable con herramientas como Salesforce, Contpaqi, SAP, Oracle, Tress, entre otras.
+
+---
+
+## 🏗️ Estructura del proyecto
+
 ```
 ventas-app/
 ├── backend/ # Backend en FastAPI
-│ └── main.py
+│ ├── app/ # Código modular del backend
+│ │ ├── api/ # Rutas de la API
+│ │ ├── core/ # Configuración y constantes
+│ │ ├── db/ # Base de datos y conexión
+│ │ ├── models/ # Modelos ORM
+│ │ ├── schemas/ # Esquemas Pydantic
+│ │ ├── services/ # Lógica de negocio
+│ │ └── tests/ # Pruebas unitarias
+│ ├── env/ # Entorno virtual (excluido del repo)
+│ ├── main.py # Punto de entrada de FastAPI
+│ └── requirements.txt # Dependencias del backend
+│
 ├── frontend/ # Frontend en React + Vite
-│ └── src/App.tsx
+│ └── src/
+│ └── App.tsx
+│
+├── scripts/ # Scripts útiles para desarrollo
+│ ├── dev.sh # Formateo + lint
+│ ├── start.sh # Inicia backend y frontend
+│ ├── run-backend.sh # Solo backend
+│ ├── setup-db.sh # Crea base de datos desde modelos
+│ └── test.sh # Corre pruebas con pytest
+│
+├── .env.example # Variables de entorno de ejemplo
 ├── .gitignore
-├── start-backend.sh
-├── start-frontend.sh
+├── CODEOWNERS
 └── README.md
 ```
+
+---
+
 ## 🚀 Cómo iniciar el proyecto
 
-### 1. Backend (FastAPI)
+### 🔧 1. Requisitos
 
-```bash
+- Python 3.10+
+- Node.js 18+
+- pip, venv, bash (o terminal compatible)
+
+---
+
+### 🟢 Opción rápida: Todo en uno
+
+``` bash
+./scripts/start.sh
+```
+
+Este script:
+
+Crea el entorno virtual (si no existe)
+
+Instala dependencias backend
+
+Inicia el backend (FastAPI)
+
+Instala dependencias frontend
+
+Inicia el frontend (React)
+
+⚙️ Opción manual paso a paso
+🖥️ Backend (FastAPI)
+
+``` bash
 cd backend
 python -m venv env
-source env/bin/activate   # o env\Scripts\activate en Windows
+source env/bin/activate     # En Windows: env\Scripts\activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
-O simplemente:
-```bash
-./start-backend.sh
-```
-Backend disponible en: http://localhost:8000
 
-### 2. Frontend (React + Vite + TS)
-
-```bash
+🌐 Frontend (React + Vite)
+``` bash
 cd frontend
 npm install
 npm run dev
 ```
-O simplemente:
+
+🧪 Ejecutar pruebas (Pytest)
 ```bash
-./start-frontend.sh
+./scripts/test.sh
+🧼 Formateo + Lint (Black, isort, Flake8)
+```bash
+./scripts/dev.sh
 ```
-Frontend disponible en: http://localhost:5173
+🛠️ Crear base de datos desde modelos
+```bash
+./scripts/setup-db.sh
+```
+🌍 URLs locales
+Backend API Docs: http://localhost:8000/docs
 
-### 3. Variables de entorno
-Backend:
-Crea .env a partir de .env.example
+Frontend App: http://localhost:5173
 
-Frontend:
-Crea .env a partir de .env.example
+🔐 Variables de entorno
+Backend
+Crear .env en backend/ a partir del archivo .env.example:
+
+``` env
+DATABASE_URL=sqlite:///./ventas.db
+API_SECRET_KEY=s3cret0ERP
+```
