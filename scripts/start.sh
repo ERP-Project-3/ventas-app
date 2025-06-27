@@ -11,7 +11,11 @@ if [ ! -d "env" ]; then
 fi
 
 # Activa entorno
-source env/Scripts/activate
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+  source env/Scripts/activate
+else
+  source env/bin/activate
+fi
 
 # Instala dependencias
 pip install -r requirements.txt
