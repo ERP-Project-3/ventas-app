@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "🗄️ Creando base de datos desde modelos..."
 
 cd backend

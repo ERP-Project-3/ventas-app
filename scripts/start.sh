@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 # Inicia backend y frontend en paralelo
 echo "🚀 Iniciando ERP SCIGE..."
 # Backend

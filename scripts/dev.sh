@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "🔧 Formateando código con Black + isort..."
 black backend/app
 isort backend/app
