@@ -1,9 +1,7 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from app.api.routes import router
 from app.db.database import Base, engine
-from app.models.venta import Venta  # Asegura que la tabla se registre
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # Instancia principal de FastAPI
 app: FastAPI = FastAPI(title="Módulo de Registro de Ventas")
@@ -22,4 +20,3 @@ Base.metadata.create_all(bind=engine)
 
 # Incluir todas las rutas definidas en api/routes.py
 app.include_router(router)
-

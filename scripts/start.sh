@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 # Inicia backend y frontend en paralelo
-
+echo "🚀 Iniciando ERP SCIGE..."
 # Backend
-cd backend
+pushd backend
 
 # Crea entorno solo si no existe
 if [ ! -d "env" ]; then
@@ -10,16 +11,22 @@ if [ ! -d "env" ]; then
 fi
 
 # Activa entorno
-source env/Scripts/activate
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+  source env/Scripts/activate
+else
+  source env/bin/activate
+fi
 
 # Instala dependencias
 pip install -r requirements.txt
 
 # Inicia backend
-uvicorn main:app --reload &
+uvicorn app.main:app --reload &
+
+popd
 
 # Frontend
-cd ..
-cd frontend
+pushd frontend
 npm install
 npm run dev
+popd
