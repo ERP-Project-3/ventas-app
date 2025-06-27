@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, Date
 from app.db.database import Base
+from sqlalchemy import Column, Date, Float, Integer, String
+
 
 class Venta(Base):
     __tablename__ = "ventas"

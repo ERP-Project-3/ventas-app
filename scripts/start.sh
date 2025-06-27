@@ -1,6 +1,6 @@
 #!/bin/bash
 # Inicia backend y frontend en paralelo
-
+echo "🚀 Iniciando ERP SCIGE..."
 # Backend
 cd backend
 
@@ -16,7 +16,7 @@ source env/Scripts/activate
 pip install -r requirements.txt
 
 # Inicia backend
-uvicorn main:app --reload &
+uvicorn app.main:app --reload &
 
 # Frontend
 cd ..
