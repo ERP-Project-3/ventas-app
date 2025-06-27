@@ -25,7 +25,3 @@ pushd frontend
 npm install
 npm run dev
 popd
-cd ..
-cd frontend
-npm install
-npm run dev
