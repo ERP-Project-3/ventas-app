@@ -2,5 +2,9 @@
 set -e
 echo "🚀 Iniciando backend..."
 cd backend
-source env/bin/activate
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+	source env/Scripts/activate
+else
+	source env/bin/activate
+fi
 uvicorn app.main:app --reload 
