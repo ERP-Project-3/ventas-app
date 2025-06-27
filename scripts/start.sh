@@ -2,7 +2,7 @@
 # Inicia backend y frontend en paralelo
 echo "🚀 Iniciando ERP SCIGE..."
 # Backend
-cd backend
+pushd backend
 
 # Crea entorno solo si no existe
 if [ ! -d "env" ]; then
@@ -18,7 +18,13 @@ pip install -r requirements.txt
 # Inicia backend
 uvicorn app.main:app --reload &
 
+popd
+
 # Frontend
+pushd frontend
+npm install
+npm run dev
+popd
 cd ..
 cd frontend
 npm install
