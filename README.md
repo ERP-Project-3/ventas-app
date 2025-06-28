@@ -102,6 +102,7 @@ npm run dev
 🧪 Ejecutar pruebas (Pytest)
 ```bash
 ./scripts/test.sh
+```
 🧼 Formateo + Lint (Black, isort, Flake8)
 ```bash
 ./scripts/dev.sh
