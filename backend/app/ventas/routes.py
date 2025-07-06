@@ -1,7 +1,7 @@
-from db.database import SessionLocal
+from app.db.database import SessionLocal
+from app.ventas.schemas import VentaCreate, VentaOut
+from app.ventas.service import crear_venta
 from fastapi import APIRouter, Depends
-from schemas import VentaCreate, VentaOut
-from service import crear_venta
 from sqlalchemy.orm import Session
 
 router = APIRouter()
