@@ -1,7 +1,5 @@
-from database import Base, engine
-from ventas.models import venta  # noqa: F401
-
-# importa tus modelos aquí
+from app.db.database import Base, engine
+from app.ventas.models import Venta  # noqa: F401
 
 print("Creando tablas...")
 Base.metadata.create_all(bind=engine)

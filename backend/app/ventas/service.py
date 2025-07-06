@@ -1,5 +1,5 @@
-from models import Venta
-from schemas import VentaCreate
+from app.ventas.models import Venta
+from app.ventas.schemas import VentaCreate
 from sqlalchemy.orm import Session
 
 

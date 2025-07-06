@@ -1,7 +1,7 @@
-from db.database import Base, engine
+from app.db.database import Base, engine
+from app.ventas.routes import router as ventas_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from ventas.routes import router as ventas_router
 
 # Instancia principal de FastAPI
 app: FastAPI = FastAPI(title="Módulo de Registro de Ventas")

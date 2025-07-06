@@ -1,20 +1,29 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Layout from "./components/Layout"
+import VentasModule from "./modules/Ventas"
+import CobranzasModule from "./modules/Cobranza"
+import CRMModule from "./modules/CMR"
 
 function App() {
-  const [mensaje, setMensaje] = useState("Cargando...")
-
   useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/`)
-    .then((res) => res.json())
-    .then((data) => setMensaje(data.message))
-    .catch(() => setMensaje("No se pudo conectar al backend"));
-  }, []);
+    fetch(`${import.meta.env.VITE_API_URL}/`)
+      .then((res) => res.json())
+      .then((data) => console.log("✅ Backend dice:", data.message))
+      .catch(() => console.warn("❌ No se pudo conectar al backend"))
+  }, [])
 
   return (
-    <main style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>Registro de Ventas</h1>
-      <p>{mensaje}</p>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="/ventas" />} />
+          <Route path="ventas" element={<VentasModule />} />
+          <Route path="cobranzas" element={<CobranzasModule />} />
+          <Route path="crm" element={<CRMModule />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
