@@ -23,5 +23,6 @@ def health() -> dict:
 
 @router.post("/ventas", response_model=VentaOut)
 def crear_venta_endpoint(datos: VentaCreate, db: Session = Depends(get_db)) -> VentaOut:
+    # TODO: Obtener organization_id del usuario autenticado o de los datos de la solicitud
     organization_id = 1
     return crear_venta(db, datos, organization_id)
