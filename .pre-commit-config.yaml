@@ -18,6 +18,6 @@ repos:
     hooks:
       - id: run-tests
         name: Run unit tests
-        entry: scripts/test.sh
+        entry: bash scripts/test.sh
         language: system
         types: [python]

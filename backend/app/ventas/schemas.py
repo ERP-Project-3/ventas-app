@@ -1,18 +1,22 @@
 from datetime import date
-from typing import Literal
 
 from pydantic import BaseModel
 
 
-class VentaCreate(BaseModel):
+class VentaBase(BaseModel):
     cliente: str
     monto: float
     fecha: date
-    metodo_pago: Literal["contado", "credito"]
+    metodo_pago: str
 
 
-class VentaOut(VentaCreate):
+class VentaCreate(VentaBase):
+    pass
+
+
+class VentaOut(VentaBase):
     id: int
+    organization_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -17,10 +17,11 @@ def get_db():
 
 
 @router.get("/")
-def health():
+def health() -> dict:
     return {"message": "Backend de ventas funcionando 🚀"}
 
 
 @router.post("/ventas", response_model=VentaOut)
-def registrar_venta(venta: VentaCreate, db: Session = Depends(get_db)):
-    return crear_venta(db, venta)
+def crear_venta_endpoint(datos: VentaCreate, db: Session = Depends(get_db)) -> VentaOut:
+    organization_id = 1
+    return crear_venta(db, datos, organization_id)
