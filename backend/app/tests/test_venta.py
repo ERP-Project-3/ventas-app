@@ -1,8 +1,8 @@
-from app.db.database import SessionLocal
-from app.models.venta import Venta
-from app.schemas.venta import VentaCreate
-from app.services.venta_service import crear_venta
+from db.database import SessionLocal
 from sqlalchemy.orm import Session
+from ventas.models import Venta
+from ventas.schemas import VentaCreate
+from ventas.service import crear_venta
 
 
 def test_crear_venta():
