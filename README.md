@@ -1,19 +1,18 @@
 # 🧾 ventas-app – Módulo de Registro de Ventas
 
-Este repositorio contiene el desarrollo del módulo principal de la aplicación: **Registro de Ventas**, encargado de gestionar transacciones comerciales, asociarlas a clientes y controlar el estado de pago (contado o crédito).  
-Actualmente está compuesto por un backend en **FastAPI** y un frontend en **React + TypeScript + Vite**.
+Este repositorio contiene el desarrollo del módulo inicial del sistema **SCIGE ERP**: el **Registro de Ventas**, responsable de capturar transacciones comerciales, asociarlas a clientes y preparar el flujo de control de cobranzas.  
+Está compuesto por un **backend modular en FastAPI** y un **frontend en React + Vite**, listo para escalar y adaptarse a un entorno empresarial.
 
 ---
 
-## 🎯 Objetivo
+## 🎯 Objetivo de esta fase
 
-Desarrollar un módulo funcional que permita:
+Entregar un MVP funcional centrado en:
 
-- Registrar ventas manuales o por formulario.
-- Asociar ventas a clientes y condiciones de pago.
-- Consultar historial de ventas.
-- Iniciar la base del control de cobranzas.
-- Evolucionar hacia un sistema ERP completo, integrable con herramientas como Salesforce, Contpaqi, SAP, Oracle, Tress, entre otras.
+- Registrar ventas con cliente, monto, fecha y método de pago.
+- Servir como base para los módulos de Cobranzas y CRM.
+- Validar integración backend + frontend.
+- Obtener retroalimentación de usuarios y maquiladoras reales.
 
 ---
 
@@ -21,33 +20,32 @@ Desarrollar un módulo funcional que permita:
 
 ```
 ventas-app/
-├── backend/ # Backend en FastAPI
-│ ├── app/ # Código modular del backend
-│ │ ├── api/ # Rutas de la API
-│ │ ├── core/ # Configuración y constantes
-│ │ ├── db/ # Base de datos y conexión
-│ │ ├── models/ # Modelos ORM
-│ │ ├── schemas/ # Esquemas Pydantic
-│ │ ├── services/ # Lógica de negocio
-│ │ └── tests/ # Pruebas unitarias
-│ ├── env/ # Entorno virtual (excluido del repo)
-│ ├── main.py # Punto de entrada de FastAPI
-│ └── requirements.txt # Dependencias del backend
+├── backend/
+│   ├── app/
+│   │   ├── core/           # Configuración (env, conexión DB)
+│   │   ├── db/             # Conexión y creación de la DB
+│   │   ├── ventas/         # Módulo de ventas: modelos, rutas, lógica
+│   │   └── tests/          # Pruebas unitarias
+│   ├── main.py             # Entry point de FastAPI
+│   └── requirements.txt
 │
-├── frontend/ # Frontend en React + Vite
-│ └── src/
-│ └── App.tsx
+├── frontend/
+│   ├── src/
+│   │   ├── modules/        # Módulos separados: Ventas, Cobranzas, CRM
+│   │   ├── components/     # Componentes comunes (ej. Layout)
+│   │   ├── App.tsx         # Configuración de rutas
+│   │   └── main.tsx        # Punto de entrada React
+│   └── vite.config.ts
 │
-├── scripts/ # Scripts útiles para desarrollo
-│ ├── dev.sh # Formateo + lint
-│ ├── start.sh # Inicia backend y frontend
-│ ├── run-backend.sh # Solo backend
-│ ├── setup-db.sh # Crea base de datos desde modelos
-│ └── test.sh # Corre pruebas con pytest
+├── scripts/
+│   ├── start.sh            # Inicia backend + frontend
+│   ├── run-backend.sh      # Solo backend
+│   ├── setup-db.sh         # Crea tablas en PostgreSQL
+│   ├── dev.sh              # Lint + formato
+│   └── test.sh             # Corre Pytest
 │
-├── .env.example # Variables de entorno de ejemplo
-├── .gitignore
-├── CODEOWNERS
+├── .env.example
+├── .pre-commit-config.yaml
 └── README.md
 ```
 
@@ -55,72 +53,88 @@ ventas-app/
 
 ## 🚀 Cómo iniciar el proyecto
 
-### 🔧 1. Requisitos
+### 🔧 Requisitos
 
 - Python 3.10+
 - Node.js 18+
-- pip, venv, bash (o terminal compatible)
+- PostgreSQL (via Docker)
+- Bash (o terminal compatible)
 
 ---
 
-### 🟢 Opción rápida: Todo en uno
+### ⚡ Opción rápida: Todo en uno
 
-``` bash
+```bash
 ./scripts/start.sh
 ```
 
 Este script:
 
-Crea el entorno virtual (si no existe)
+1. Crea entorno virtual e instala dependencias.
+2. Levanta el contenedor PostgreSQL.
+3. Crea la base de datos desde los modelos.
+4. Inicia el backend FastAPI.
+5. Instala e inicia el frontend React.
 
-Instala dependencias backend
+---
 
-Inicia el backend (FastAPI)
+### ⚙️ Opción manual paso a paso
 
-Instala dependencias frontend
+#### 🖥️ Backend (FastAPI)
 
-Inicia el frontend (React)
-
-⚙️ Opción manual paso a paso
-🖥️ Backend (FastAPI)
-
-``` bash
+```bash
 cd backend
 python -m venv env
-source env/bin/activate     # En Windows: env\Scripts\activate
+source env/bin/activate         # En Windows: env\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-🌐 Frontend (React + Vite)
-``` bash
+#### 🐘 Base de datos PostgreSQL con Docker
+
+```bash
+docker run --name scige-postgres \
+  -e POSTGRES_USER=scige \
+  -e POSTGRES_PASSWORD=scige \
+  -e POSTGRES_DB=scige_db \
+  -p 5432:5432 -d postgres
+```
+
+```bash
+./scripts/setup-db.sh
+```
+
+#### 🌐 Frontend (React + Vite)
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-🧪 Ejecutar pruebas (Pytest)
-```bash
-./scripts/test.sh
-```
-🧼 Formateo + Lint (Black, isort, Flake8)
-```bash
-./scripts/dev.sh
-```
-🛠️ Crear base de datos desde modelos
-```bash
-./scripts/setup-db.sh
-```
-🌍 URLs locales
-Backend API Docs: http://localhost:8000/docs
+---
 
-Frontend App: http://localhost:5173
+## 🧪 Pruebas y herramientas
 
-🔐 Variables de entorno
-Backend
-Crear .env en backend/ a partir del archivo .env.example:
+- 🧪 **Tests** (Pytest): `./scripts/test.sh`
+- 🧼 **Lint + formato**: `./scripts/dev.sh`
+- ✅ **Hooks pre-commit**: ejecuta pruebas y validación automática antes de cada commit
 
-``` env
-DATABASE_URL=sqlite:///./ventas.db
-API_SECRET_KEY=s3cret0ERP
+---
+
+## 🔗 URLs locales
+
+- Backend (FastAPI Docs): [http://localhost:8000/docs](http://localhost:8000/docs)
+- Frontend (Vite + React): [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🔐 Variables de entorno
+
+### Backend
+
+Crear archivo `.env` en `backend/` basado en `.env.example`:
+
+```env
+DATABASE_URL=postgresql://scige:scige@localhost:5432/scige_db
 ```
