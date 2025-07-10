@@ -2,12 +2,10 @@
 set -e
 echo "🧪 Ejecutando pruebas con Pytest..."
 
-# Verifica que Postgres esté escuchando en localhost:5432
-echo "🔍 Verificando que Postgres esté corriendo en localhost:5432..."
-if ! nc -z localhost 5432; then
-  echo "❌ No se detectó Postgres en localhost:5432."
-  echo "Por favor, inicia tu contenedor con Docker antes de correr los tests."
-  echo "🟢 Comando que inicia el contenedor en local: './scripts/start.sh'"
+# Checa si hay algún contenedor de postgres activo
+if ! docker ps --format '{{.Image}}' | grep -q 'postgres'; then
+  echo "❌ No hay ningún contenedor de Postgres corriendo."
+  echo "🟦 Inicia tu base con './scripts/start.sh' o './scripts/start-docker.sh' antes de testear."
   exit 1
 fi
 

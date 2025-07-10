@@ -11,7 +11,7 @@ COPY frontend/package*.json ./
 RUN npm install
 
 # Copia el resto del código fuente al contenedor
-COPY frontend /app
+COPY frontend/. .
 
 # Puerto por defecto de Vite en desarrollo
 EXPOSE 5173
